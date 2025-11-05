@@ -6,7 +6,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 // Video mapping for each section
 const sectionVideos: Record<string, { src: string; title: string }> = {
   hero: {
-    src: "/videos/hero-intro.mp4",
+    src: "/hero-intro.mp4",
     title: "Introduction",
   },
   philosophy: {
