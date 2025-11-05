@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import ChatPage from "./pages/ChatPage";
 import ExperiencePage from "./pages/ExperiencePage";
 import PatentsPage from "./pages/PatentsPage";
+import AIPortfolioPage from "./pages/AIPortfolioPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
