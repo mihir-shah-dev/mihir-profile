@@ -161,6 +161,9 @@ const FloatingVideoIntro = () => {
             className={`w-full ${isExpanded ? "h-[calc(100vh-8rem)]" : "aspect-video"}`}
             onClick={togglePlay}
             onEnded={() => setIsPlaying(false)}
+            playsInline
+            preload="metadata"
+            controlsList="nodownload"
           >
             <source src={currentVideo.src} type="video/mp4" />
             Your browser does not support the video tag.
