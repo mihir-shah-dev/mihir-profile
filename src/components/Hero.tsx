@@ -48,6 +48,13 @@ const Hero = () => {
               View My Work
             </Button>
             <Button 
+              variant="hero" 
+              size="lg"
+              onClick={() => window.location.href = '/ai-portfolio'}
+            >
+              View My AI Portfolio
+            </Button>
+            <Button 
               variant="outline" 
               size="lg"
               className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
