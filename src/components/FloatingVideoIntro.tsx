@@ -86,7 +86,11 @@ const FloatingVideoIntro = () => {
       if (isPlaying) {
         videoRef.current.pause();
       } else {
-        videoRef.current.play();
+       videoRef.current.play().catch((error) => {
+          console.error("Video playback failed:", error);
+          console.log("Video src:", currentVideo.src);
+          console.log("Video element:", videoRef.current);
+        });
       }
       setIsPlaying(!isPlaying);
     }
@@ -161,6 +165,10 @@ const FloatingVideoIntro = () => {
             className={`w-full ${isExpanded ? "h-[calc(100vh-8rem)]" : "aspect-video"}`}
             onClick={togglePlay}
             onEnded={() => setIsPlaying(false)}
+            onError={(e) => {
+              console.error("Video loading error:", e);
+              console.log("Failed to load:", currentVideo.src);
+            }}
             playsInline
             preload="metadata"
             controlsList="nodownload"
