@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const Hero = () => {
@@ -47,13 +48,14 @@ const Hero = () => {
             >
               View My Work
             </Button>
-            <Button 
-              variant="hero" 
-              size="lg"
-              onClick={() => window.location.href = '/ai-portfolio'}
-            >
-              View My AI Portfolio
-            </Button>
+            <Link to="/ai-portfolio">
+              <Button 
+                variant="hero" 
+                size="lg"
+              >
+                View My AI Portfolio
+              </Button>
+            </Link>
             <Button 
               variant="outline" 
               size="lg"
