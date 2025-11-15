@@ -6,39 +6,39 @@ import { useIsMobile } from "@/hooks/use-mobile";
 // Video mapping for each section - using YouTube video IDs
 const sectionVideos: Record<string, { videoId: string; title: string }> = {
   hero: {
-    videoId: "dQw4w9WgXcQ", // Replace with your actual YouTube video ID
+    videoId: "d82t8zYJamc", // Replace with your actual YouTube video ID
     title: "Introduction",
   },
   philosophy: {
-    videoId: "dQw4w9WgXcQ", // Replace with your actual YouTube video ID
+    videoId: "d82t8zYJamc", // Replace with your actual YouTube video ID
     title: "My Philosophy",
   },
   experience: {
-    videoId: "dQw4w9WgXcQ", // Replace with your actual YouTube video ID
+    videoId: "d82t8zYJamc", // Replace with your actual YouTube video ID
     title: "Experience Overview",
   },
   patents: {
-    videoId: "dQw4w9WgXcQ", // Replace with your actual YouTube video ID
+    videoId: "d82t8zYJamc", // Replace with your actual YouTube video ID
     title: "Patents & Innovation",
   },
   projects: {
-    videoId: "dQw4w9WgXcQ", // Replace with your actual YouTube video ID
+    videoId: "d82t8zYJamc", // Replace with your actual YouTube video ID
     title: "Notable Projects",
   },
   education: {
-    videoId: "dQw4w9WgXcQ", // Replace with your actual YouTube video ID
+    videoId: "d82t8zYJamc", // Replace with your actual YouTube video ID
     title: "Education Background",
   },
   recommendations: {
-    videoId: "dQw4w9WgXcQ", // Replace with your actual YouTube video ID
+    videoId: "d82t8zYJamc", // Replace with your actual YouTube video ID
     title: "Recommendations",
   },
   chat: {
-    videoId: "dQw4w9WgXcQ", // Replace with your actual YouTube video ID
+    videoId: "d82t8zYJamc", // Replace with your actual YouTube video ID
     title: "AI Chat",
   },
   contact: {
-    videoId: "dQw4w9WgXcQ", // Replace with your actual YouTube video ID
+    videoId: "d82t8zYJamc", // Replace with your actual YouTube video ID
     title: "Get In Touch",
   },
 };
