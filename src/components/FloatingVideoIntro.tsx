@@ -1,54 +1,53 @@
 import { useState, useRef, useEffect } from "react";
-import { Play, Pause, X, Maximize2, Minimize2 } from "lucide-react";
+import { X, Maximize2, Minimize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-// Video mapping for each section
-const sectionVideos: Record<string, { src: string; title: string }> = {
+// Video mapping for each section - using YouTube video IDs
+const sectionVideos: Record<string, { videoId: string; title: string }> = {
   hero: {
-    src: "/hero-intro.mp4",
+    videoId: "dQw4w9WgXcQ", // Replace with your actual YouTube video ID
     title: "Introduction",
   },
   philosophy: {
-    src: "/videos/philosophy-intro.mp4",
+    videoId: "dQw4w9WgXcQ", // Replace with your actual YouTube video ID
     title: "My Philosophy",
   },
   experience: {
-    src: "/videos/experience-intro.mp4",
+    videoId: "dQw4w9WgXcQ", // Replace with your actual YouTube video ID
     title: "Experience Overview",
   },
   patents: {
-    src: "/videos/patents-intro.mp4",
+    videoId: "dQw4w9WgXcQ", // Replace with your actual YouTube video ID
     title: "Patents & Innovation",
   },
   projects: {
-    src: "/videos/projects-intro.mp4",
+    videoId: "dQw4w9WgXcQ", // Replace with your actual YouTube video ID
     title: "Notable Projects",
   },
   education: {
-    src: "/videos/education-intro.mp4",
+    videoId: "dQw4w9WgXcQ", // Replace with your actual YouTube video ID
     title: "Education Background",
   },
   recommendations: {
-    src: "/videos/recommendations-intro.mp4",
+    videoId: "dQw4w9WgXcQ", // Replace with your actual YouTube video ID
     title: "Recommendations",
   },
   chat: {
-    src: "/videos/chat-intro.mp4",
+    videoId: "dQw4w9WgXcQ", // Replace with your actual YouTube video ID
     title: "AI Chat",
   },
   contact: {
-    src: "/videos/contact-intro.mp4",
+    videoId: "dQw4w9WgXcQ", // Replace with your actual YouTube video ID
     title: "Get In Touch",
   },
 };
 
 const FloatingVideoIntro = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [currentSection, setCurrentSection] = useState<string>("hero");
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const isMobile = useIsMobile();
 
   // Detect which section is in view
@@ -62,11 +61,6 @@ const FloatingVideoIntro = () => {
             const sectionId = entry.target.getAttribute("data-section");
             if (sectionId && sectionVideos[sectionId]) {
               setCurrentSection(sectionId);
-              // Pause video when section changes
-              if (videoRef.current && isPlaying) {
-                videoRef.current.pause();
-                setIsPlaying(false);
-              }
             }
           }
         });
@@ -79,32 +73,13 @@ const FloatingVideoIntro = () => {
     sections.forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
-  }, [isPlaying]);
-
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-       videoRef.current.play().catch((error) => {
-          console.error("Video playback failed:", error);
-          console.log("Video src:", currentVideo.src);
-          console.log("Video element:", videoRef.current);
-        });
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
+  }, []);
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
 
   const handleClose = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-    }
-    setIsPlaying(false);
     setIsVisible(false);
   };
 
@@ -159,58 +134,21 @@ const FloatingVideoIntro = () => {
 
         {/* Video Container */}
         <div className="relative bg-black">
-          <video
-            ref={videoRef}
-            key={currentSection} // Force reload when section changes
+          <iframe
+            ref={iframeRef}
+            key={currentSection}
             className={`w-full ${isExpanded ? "h-[calc(100vh-8rem)]" : "aspect-video"}`}
-            onClick={togglePlay}
-            onEnded={() => setIsPlaying(false)}
-            onError={(e) => {
-              console.error("Video loading error:", e);
-              console.log("Failed to load:", currentVideo.src);
-            }}
-            playsInline
-            preload="metadata"
-            controlsList="nodownload"
-          >
-            <source src={currentVideo.src} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-
-          {/* Play/Pause Overlay */}
-          {!isPlaying && (
-            <div
-              className="absolute inset-0 flex items-center justify-center bg-black/40 cursor-pointer"
-              onClick={togglePlay}
-            >
-              <Button
-                size="icon"
-                className="h-16 w-16 rounded-full bg-primary/90 hover:bg-primary"
-              >
-                <Play className="h-8 w-8 ml-1" />
-              </Button>
-            </div>
-          )}
-
-          {/* Controls Bar */}
-          {isPlaying && (
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-10 w-10 text-white hover:text-white hover:bg-white/20"
-                onClick={togglePlay}
-              >
-                <Pause className="h-5 w-5" />
-              </Button>
-            </div>
-          )}
+            src={`https://www.youtube.com/embed/${currentVideo.videoId}?rel=0&modestbranding=1`}
+            title={currentVideo.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
         </div>
 
         {/* Caption */}
         {!isMobile && (
           <div className="p-3 bg-muted/30 text-sm text-muted-foreground">
-            Click to play — Video changes as you scroll through sections
+            Video changes as you scroll through sections
           </div>
         )}
       </div>
