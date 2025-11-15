@@ -123,11 +123,9 @@ const Recommendations = () => {
                 </p>
                 
                 <div className="flex items-center gap-3 mt-auto">
-                  <img 
-                    src={rec.image} 
-                    alt={rec.name}
-                    className="w-10 h-10 rounded-full bg-muted"
-                  />
+                  <div className="p-3 rounded-full bg-accent flex-shrink-0">
+                    <Linkedin className="w-6 h-6 text-accent-foreground" />
+                  </div>
                   <div>
                     <div className="font-semibold text-card-foreground text-sm">
                       {rec.name}
